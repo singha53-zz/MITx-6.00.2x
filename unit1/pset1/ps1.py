@@ -54,9 +54,25 @@ def greedy_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
-
+    if len(cows) == 0:
+        return []
+    tmpcows = cows.copy()
+    weights = sorted(tmpcows.items(), key=lambda x: x[1] , reverse=True)
+    trips = []
+    while sum(tmpcows.values()) > 0:
+        total = 0
+        trip = []
+        for cow, weight in weights:
+            if tmpcows[cow] != 0 and weight + total <= limit:
+                trip.append(cow)
+                total += weight
+                tmpcows[cow] = 0
+        trips.append(trip)
+    return trips
+        
+cows = {'Louis': 45, 'Milkshake': 75, 'Clover': 5, 'Lotus': 10, 'MooMoo': 85, 'Muscles': 65, 'Patches': 60, 'Polaris': 20, 'Miss Bella': 15, 'Horns': 50}
+limit = 100
+greedy_cow_transport(cows,limit)
 
 # Problem 2
 def brute_force_cow_transport(cows,limit=10):
@@ -79,9 +95,33 @@ def brute_force_cow_transport(cows,limit=10):
     transported on a particular trip and the overall list containing all the
     trips
     """
-    # TODO: Your code here
-    pass
+    allPartitions = sorted(get_partitions(cows), key = len)
+    # Note that this returns a list of names (strings), and we will need to do
+    # dictionary lookup later
+    # Now time to filter the power list:
+    result = []
+    for i in allPartitions:
+        trip = []
+        for j in i:
+            weights = []
+            for k in j:
+                weights.append(cows[k])
+            trip.append(sum(weights))
+        if all(d <= limit for d in trip):
+            result.append(i)
+    rm_result = []
+    for k in result:
+        if k not in rm_result:
+            rm_result.append(k)
+    # now find the minimum list length:
+    min_list_len = min(map(len, rm_result))
+    for l in rm_result:
+        if len(l) == min_list_len:
+            return l
 
+cows = {'Miss Bella': 25, 'Horns': 25, 'Lotus': 40, 'MooMoo': 50, 'Milkshake': 40, 'Boo': 20}
+limit = 100
+brute_force_cow_transport(cows,limit)
         
 # Problem 3
 def compare_cow_transport_algorithms():
