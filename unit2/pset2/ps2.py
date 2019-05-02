@@ -3,6 +3,7 @@
 import math
 import random
 
+#cd '/Users/asingh/Dropbox/Courses/MOOC/edX/MITx-6.00.2x/unit2/pset2'
 import ps2_visualize
 import pylab
 
@@ -82,7 +83,9 @@ class RectangularRoom(object):
         width: an integer > 0
         height: an integer > 0
         """
-        raise NotImplementedError
+        self.width = width
+        self.height = height
+        self.cleanedTiles = []
     
     def cleanTileAtPosition(self, pos):
         """
@@ -92,7 +95,9 @@ class RectangularRoom(object):
 
         pos: a Position
         """
-        raise NotImplementedError
+        coord = (int(pos.getX()), int(pos.getY()))
+        if coord not in self.cleanedTiles:
+            self.cleanedTiles.append(coord)
 
     def isTileCleaned(self, m, n):
         """
@@ -104,7 +109,13 @@ class RectangularRoom(object):
         n: an integer
         returns: True if (m, n) is cleaned, False otherwise
         """
-        raise NotImplementedError
+        self.m = m
+        self.n = n
+        tile = (self.m, self.n)
+        if tile in self.cleanedTiles:
+            return True
+        else:
+            return False
     
     def getNumTiles(self):
         """
@@ -112,7 +123,7 @@ class RectangularRoom(object):
 
         returns: an integer
         """
-        raise NotImplementedError
+        return self.width * self.height
 
     def getNumCleanedTiles(self):
         """
@@ -120,7 +131,7 @@ class RectangularRoom(object):
 
         returns: an integer
         """
-        raise NotImplementedError
+        return len(self.cleanedTiles)
 
     def getRandomPosition(self):
         """
@@ -128,7 +139,7 @@ class RectangularRoom(object):
 
         returns: a Position object.
         """
-        raise NotImplementedError
+        return Position(random.uniform(0, self.width), random.uniform(0, self.height))
 
     def isPositionInRoom(self, pos):
         """
@@ -137,7 +148,10 @@ class RectangularRoom(object):
         pos: a Position object.
         returns: True if pos is in the room, False otherwise.
         """
-        raise NotImplementedError
+        if pos.x >= 0 and pos.y >= 0 and pos.x < self.width and pos.y < self.height:
+            return True
+        else:
+            return False
 
 
 # === Problem 2
