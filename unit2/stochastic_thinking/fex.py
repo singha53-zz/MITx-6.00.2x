@@ -220,3 +220,77 @@ def deterministicNumber():
 # P({nether roll is equal to 4}) = 1 - P({at least one roll equal to 4}) = 1 - 7/16 = 9/16
 # 
 # =============================================================================
+
+# =============================================================================
+# Exercise 6
+# 12/13 points (graded)
+# In this problem, we're going to calculate some various probabilities.
+# 
+# What is the size of the sample space for two rolls of a ten sided die?
+# 
+# 100
+#   correct  100
+# What is the size of the sample space for three rolls of an eight sided die?
+# 
+# 512
+#   correct  512
+# What is the size of the sample space for drawing one card from a deck of 52 cards?
+# 
+# 52
+#   correct  52
+# What is the size of the sample space for drawing one card from each of two decks of 52 cards? That is, drawing one card from one deck of cards, then a second card from a second deck of cards.
+# 
+# 2704
+#   correct  2704
+# Assume we roll 2 ten sided dice. What is P({rolling a 2 followed by a 3})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 1/100
+#   correct  1/100
+# Assume we roll 2 ten sided dice. What is P({first roll larger than second roll})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 9/20
+#   correct  9/20
+# Assume we roll 3 eight sided dice. What is P({all three rolls are equal})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 1/52
+#   incorrect  1/64
+# A standard deck of cards contains 52 cards, 13 each of four suits - diamonds, clubs, hearts, and spades. Each suit contains one of 13 cards: A (ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), K (king). Given one deck of 52 playing cards, you flip one over. Assuming a fair deck,what is P({ace of hearts})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 1/52
+#   correct  1/52
+# Given one deck of 52 playing cards, you flip one over. Assuming a fair deck, what is P({drawing a card with suit spades})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 1/4
+#   correct  1/4
+# Given one deck of 52 playing cards, you flip one over. Assuming a fair deck, what is P({ace of any suit})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 1/13
+#   correct  1/13
+# Given one deck of 52 playing cards, you flip one over. Assuming a fair deck, what is P({any card except an ace})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 12/13
+#   correct  12/13
+# Given one deck of 52 playing cards, you draw two random cards. (The cards are drawn at the same time, so the selection is considered without replacement) Assuming a fair deck, what is P({both cards are aces})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 1/221
+#   correct  1/221
+# Given two decks of 52 playing cards, you flip one over from each deck. Assuming fair decks, what is P({the two cards are the same suit})? Answer in reduced fraction form - eg 1/5 instead of 2/10.
+# 
+# 1/4
+#   correct  1/4
+# Explanation:
+# 
+# What is the size of the sample space for two rolls of a ten sided die? 10**2 = 100
+# What is the size of the sample space for three rolls of an eight sided die? 8**3 = 512
+# What is the size of the sample space drawing from a deck of 52 cards? 52
+# What is the size of the sample space drawing from two decks of 52 cards? 52**2 = 2704
+# P({rolling a 2 followed by a 3}) = P({2, 3}) = 1/100
+# P({first roll larger than second roll}) = P({10, <1, 2, 3, 4, 5, 6, 7, 8, 9>}) + P({9, <1, 2, 3, 4, 5, 6, 7, 8>}) + ... + P({2, 1}) = 9/100 + 8/100 + 7/100 + 6/100 + 5/100 + 4/100 + 3/100 + 2/100 + 1/100 = 45/100 = 9/20
+# P({all three rolls are equal}) = P({all 1}) + P({all 2}) + ... + P({all 8}) = 1/512 + 1/512 + 1/512 + 1/512 + 1/512 + 1/512 + 1/512 + 1/512 = 8/512 = 1/64. Another way to think of it: it doesn't matter what the first roll is, but the second and third rolls must match the first roll. So the probability can be expressed as (8/8) * (1/8) * (1/8) = 1/64.
+# P({ace of hearts}) = P({one card}) = 1/52
+# P({drawing a card with suite spades}) = 13/52 = 1/4
+# P({ace of any suit}) = P({ace of hearts}) + P({ace of clubs}) + P({ace of spaces}) P({ace of diamonds}) = 1/52 + 1/52 + 1/52 + 1/52 = 4/52 = 1/13
+# P({any card except an ace}) = 1 - P({ace of any suit}) = 1 - 1/13 = 12/13
+# P({both cards are aces}) = 4/52 * 3/51 = 12/2652 = 1/221. The probability of an ace is 4/52. On the second draw, if an ace was drawn the first time, there are only 3 aces left and only 51 cards remaining. Thus the probability that the second card is also an ace is 3/51.
+# P({two cards are the same suit}) = This is an interesting problem. There are a few ways of calculating this, but a very simple way is to note that it doesn't matter what suit the first card is; what matters is that the second card's suit matches the suit of the first card. If the first card is a spade, there is a 13/52 = 1/4 chance the second card will also be a spade. Following this logic, you'll find that there's always a 1/4 chance the second card's suit will match the first card's suit, thus P({two cards are the same suit}) = 1/4.
+# =============================================================================
