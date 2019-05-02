@@ -48,15 +48,24 @@ Created on Thu May  2 12:12:37 2019
 # =============================================================================
 import random
 
-
 def genEven():
     '''
     Returns a random number x, where 0 <= x < 100
     '''
-    return random.randrandge(0, 100, 2)
+    return 10
     
-    
-    
+# =============================================================================
+# Exercise 3-1
+# 0.0/5.0 points (graded)
+# Write a deterministic program, deterministicNumber, that returns an even number between 9 and 21.
+# 
+# =============================================================================
+def deterministicNumber():
+    '''
+    Deterministically generates and returns an even number between 9 and 21
+    '''
+    return random.randrange(8, 21, 2)
+       
     
     
     
