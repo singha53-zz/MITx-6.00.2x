@@ -66,6 +66,76 @@ def deterministicNumber():
     '''
     return random.randrange(8, 21, 2)
        
-    
-    
+# =============================================================================
+# Exercise 4
+# 3/3 points (graded)
+# Are the following two distributions equivalent?
+# 
+# import random
+# def dist1():
+#     return random.random() * 2 - 1
+# 
+# def dist2():
+#     if random.random() > 0.5:
+#         return random.random()
+#     else:
+#         return random.random() - 1 
+# 
+# Yes correct
+# No
+# Explanation:
+# 
+# The random.random() distribution is uniform, so both dist1 and dist2 are a uniform distribution over [-1.0, 1.0).
+# 
+# Are the following two distributions equivalent?
+# 
+# import random
+# def dist3():
+#     return int(random.random() * 10)
+# 
+# def dist4():
+#     return random.randrange(0, 10)
+# 
+# Yes correct
+# No
+# Explanation:
+# 
+# The random.random() distribution is uniform, and so is the random.randrange() distribution, so both dist3 and dist4 are a discrete uniform distribution over [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].
+# 
+# Are the following two distributions equivalent?
+# 
+# import random
+# def dist5():
+#     return int(random.random() * 10)
+# 
+# def dist6():
+#     return random.randint(0, 10)
+# 
+# Yes
+# No correct
+# Explanation:
+# 
+# The random.random() distribution is uniform, and so is the random.randint() distribution. However unlike random.randrange(start, end), random.randint(start, end) returns a distribution that is inclusive of both the given start and end points.
+# 
+# Thus dist5 is a discrete uniform distribution over [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], but dist6 is a discrete uniform distribution over [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].
+# 
+# You can code a simple simulation to see what a distribution looks like using dictionaries:
+# 
+# d1 = {}
+# for i in range(10000):
+#     x = random.randrange(10) 
+#     d1[x] = d1.get(x, 0) + 1
+# d2 = {}
+# for i in range(10000):
+#     x = int(random.random()*10)
+#     d2[x] = d2.get(x, 0) + 1
+# d3 = {}
+# for i in range(10000):
+#     x = random.randint(0, 10)
+#     d3[x] = d3.get(x, 0) + 1
+# Examine the values of the three dictionaries to see what sort of distribution results!
+# 
+# Question to ponder: Should all the values of the dictionaries be equal? That is, should d1[x] == d1[y] for all values of x and y, where x != y and both x and y are values in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]?    
+#     
+# =============================================================================
     
