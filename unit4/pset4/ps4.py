@@ -130,10 +130,14 @@ def generate_models(x, y, degs):
         a list of numpy arrays, where each array is a 1-d array of coefficients
         that minimizes the squared error of the fitting polynomial
     """
-    # TODO
-    pass
+    return [np.polyfit(x, y, i) for i in degs]
+
+generate_models([1961, 1962, 1963], [4.4, 5.5, 6.6], [1, 2])
 
 # Problem 2
+import os
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+import numpy as np
 def r_squared(y, estimated):
     """
     Calculate the R-squared error term.
@@ -143,8 +147,14 @@ def r_squared(y, estimated):
     Returns:
         a float for the R-squared error term
     """
-    # TODO
-    pass
+    avg = np.mean(y)
+    num = np.sum([i*i for i in np.subtract(y, estimated)])
+    denom = np.sum([(i - avg)*(i - avg) for i in y])
+    return 1 - num/denom
+
+y = [32.0, 42.0, 31.3, 22.0, 33.0]
+estimated = [32.3, 42.1, 31.2, 22.1, 34.0]
+r_squared(y, estimated)
 
 # Problem 3
 def evaluate_models_on_training(x, y, models):
@@ -168,8 +178,18 @@ def evaluate_models_on_training(x, y, models):
     Returns:
         None
     """
-    # TODO
-    pass
+    xVals = pylab.array(x)
+    yVals = pylab.array(y)
+    for i in models:
+        pylab.plot(xVals, yVals, 'bo', label = 'plot')
+        pylab.title('Temperature vs. time')
+        pylab.xlabel('Year')
+        pylab.ylabel('Temperature')
+        a,b = models[0][0], models[0][1]
+        estYVals = a*xVals + b
+        pylab.plot(xVals, estYVals, label = 'R^2 =' + str(r_squared(yVals, estYVals)))
+        pylab.legend(loc = 'line of best fit')
+        pylab.show()    
 
 
 ### Begining of program
@@ -188,6 +208,7 @@ evaluate_models_on_training(x, y, models)
 x1 = INTERVAL_1
 x2 = INTERVAL_2
 y = []
-# MISSING LINES
+for year in INTERVAL_1:
+    y.append(np.mean(raw_data.get_yearly_temp('BOSTON', year)))
 models = generate_models(x, y, [1])    
 evaluate_models_on_training(x, y, models)
